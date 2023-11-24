@@ -1,0 +1,52 @@
+{
+  "tags": {
+    "music": {
+      "keywords": [
+        "music",
+        "song",
+        "album"
+      ]
+    },
+    "games": {
+      "keywords": [
+        "gaming",
+        "video game",
+        "steam",
+        "xbox",
+        "playstation",
+        "nintendo"
+      ]
+    },
+    "actualities": {
+      "keyswords": [
+        "news",
+        "newspaper",
+        "article"
+      ]
+    },
+    "sports": {
+      "keywords": [
+        "sports",
+        "sport",
+        "football",
+        "basketball",
+        "baseball",
+        "soccer",
+        "hockey",
+        "tennis",
+        "golf",
+        "rugby",
+        "volleyball",
+        "cricket",
+        "boxing",
+        "mma",
+        "ufc",
+        "wwe",
+        "nascar",
+        "formula 1",
+        "motorsports",
+        "motogp"
+      ]
+    }
+  }
+}
