@@ -1,0 +1,46 @@
+.Frame {
+  -webkit-app-region: drag;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $gutter;
+  font-weight: $t-bold;
+  z-index: 10000;
+  height: $frame-height;
+  background: darken($secondary, 10%);
+
+  &__title {
+    -webkit-app-region: no-drag;
+    font-size: $t-6;
+    display: flex;
+    align-items: center;
+
+    &__version {
+      margin-left: 1rem;
+      background: $secondary;
+      padding: 0.1rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: calc($t-6 / 1.2);
+
+      &:hover {
+        background: darken($primary, 10%);
+      }
+    }
+  }
+
+  &__buttons {
+    -webkit-app-region: no-drag;
+    display: flex;
+
+    &__item {
+      font-size: $t-4;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        color: darken(#f8f8ff, 10%);
+      }
+    }
+  }
+}

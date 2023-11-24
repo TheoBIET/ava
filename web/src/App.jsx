@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { links } from './constants/links.js';
+import Chat from './components/Chat.jsx';
+import Navigation from './components/Navigation.jsx';
+import Settings from './components/Settings.jsx';
+import Users from './components/Users.jsx';
+import Soon from './components/Soon.jsx';
+
+export default function App() {
+  const [selectedLink, setSelectedLink] = useState(links[0].name);
+
+  const getComponent = (name) => {
+    switch (name) {
+      case 'chat':
+        return <Chat />;
+      case 'users':
+        return <Users />;
+      case 'settings':
+        return <Settings />;
+      default:
+        return <Soon />;
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main className="App">
+      <Navigation links={links} active={selectedLink} handle={setSelectedLink}/>
+      {getComponent(selectedLink)}
+    </main>
   )
 }
-
-export default App

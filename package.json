@@ -2,34 +2,40 @@
   "name": "ava",
   "version": "1.0.0-snapshot-1",
   "description": "🤖 ava is a virtual personnal assistant powered by AI",
-  "main": "index.js",
   "repository": "git@github.com:TheoBIET/ava.git",
   "author": "Théo BIET <9063657-dev.theobiet@users.noreply.gitlab.com>",
   "license": "MIT",
-  "type": "module",
+  "main": "./app/index.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev": "concurrently \"yarn dev:api\" \"yarn dev:web\" \"yarn dev:app\"",
     "dev:api": "nodemon --watch api api/src/index.js",
-    "dev:web": "vite web --host 0.0.0.0",
+    "dev:web": "vite web --host 0.0.0.0 --port 8080",
+    "dev:app": "wait-on http://localhost:8080 && electron .",
     "build:web": "vite build web",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0 --fix"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "fastify": "^4.24.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
     "concurrently": "^8.2.2",
+    "electron": "^27.1.2",
+    "electron-reload": "^2.0.0-alpha.1",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "nodemon": "^3.0.1",
-    "vite": "^5.0.0"
+    "sass": "^1.69.5",
+    "vite": "^5.0.0",
+    "wait-on": "^7.2.0"
   }
 }
