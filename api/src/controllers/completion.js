@@ -1,4 +1,4 @@
-const postTranscript = async (_, reply) => {
+const postCompletion = async (_, reply) => {
   return reply
     .status(200)
     .send({
@@ -7,5 +7,5 @@ const postTranscript = async (_, reply) => {
 }
 
 module.exports = {
-  postTranscript,
+  postCompletion,
 }

@@ -1,4 +1,4 @@
-import { childProcess } from 'child_process';
+const childProcess = require('child_process');
 
 class AvaCore {
   constructor() {
@@ -21,3 +21,5 @@ class AvaCore {
     });
   }
 }
+
+module.exports = AvaCore;

@@ -1,11 +1,15 @@
-import { Status } from '../constants/locales.js';
-import pkg from '../../../package.json' assert { type: 'json' };
+const { STATUS } = require('../constants/locales');
+const pkg = require('../../../package.json');
 
-export const getStatus = async (_, reply) => {
+const getStatus = async (_, reply) => {
   return reply
     .status(200)
     .send({
-      status: Status.OK,
+      status: STATUS.OK,
       version: pkg.version,
     });
+}
+
+module.exports = {
+  getStatus,
 }

@@ -1,5 +1,7 @@
-import { getStatus } from '../controllers/status.js';
+const { getStatus } = require('../controllers/status');
 
-export default async function routes(fastify) {
-  fastify.get('/', getStatus);
+const routes = async (api) => {
+  api.get('/', getStatus);
 }
+
+module.exports = routes;

@@ -1,23 +1,25 @@
-import Fastify from 'fastify';
-import { FASTIFY_CONFIG as CONFIG, ROUTES } from './constants/fastify.js';
+const Fastify = require('fastify');
+const { FASTIFY_CONFIG: CONFIG, ROUTES } = require('./constants/fastify');
 
-import statusRoutes from './routes/status.js';
-import transcriptRoutes from './routes/transcript.js';
+const statusRoutes = require('./routes/status');
+const transcriptRoutes = require('./routes/transcript');
+const completionRoutes = require('./routes/completion');
 
-const fastify = Fastify({
-  logger: CONFIG.LOGGER,
+const api = Fastify({
+  logger: CONFIG,
 });
 
-fastify.register(async (scope) => {
+api.register(async (scope) => {
   scope.register(statusRoutes, { prefix: ROUTES.STATUS.PREFIX });
-  scope.register(transcriptRoutes, { prefix: ROUTES.UTTERANCE.PREFIX });
+  scope.register(transcriptRoutes, { prefix: ROUTES.TRANSCRIPT.PREFIX });
+  scope.register(completionRoutes, { prefix: ROUTES.COMPLETION.PREFIX });
 }, { prefix: CONFIG.PREFIX });
 
-fastify.listen({ port: CONFIG.PORT, host: CONFIG.HOST }, (err, address) => {
+api.listen({ port: CONFIG.PORT, host: CONFIG.HOST }, (err, address) => {
   if (err) {
-    fastify.log.error(err);
+    api.log.error(err);
     process.exit(1);
   }
 
-  fastify.log.info(`🚀 Fastify server listening on ${address}`);
+  api.log.info(`🚀 Fastify server listening on ${address}`);
 });

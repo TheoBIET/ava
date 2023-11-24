@@ -1,4 +1,8 @@
-export const Status = {
+const STATUS = {
   OK: 'OK',
   KO: 'KO',
+};
+
+module.exports = {
+  STATUS,
 };

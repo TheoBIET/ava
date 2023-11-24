@@ -1,5 +1,7 @@
-import { postTranscript } from "../controllers/transcript.js";
+const { postTranscript } = require('../controllers/transcript');
 
-export default async function routes(fastify) {
-  fastify.post('/', postTranscript);
+const routes = async (api) => {
+  api.post('/', postTranscript);
 }
+
+module.exports = routes;

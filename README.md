@@ -52,3 +52,5 @@ yarn dev
 | Work In Progress | `:construction:`         | 🚧   |
 | Experiment       | `:alembic:`              | ⚗️   |
 | Architecture     | `:building_construction` | 🏗️   |
+| New dependency   | `:heavy_plus_sign:`      | ➕   |
+| Refactor         | `:recycle:`              | ♻️   |
