@@ -7,9 +7,9 @@
 </div>
 
 ## 📚 Table Of Content
-- [🧪 Technologies](#)
+- [🧪 Technologies](#🧪-technologies)
 - [🚀 Installation](#🚀-installation)
-- [Commit Naming]()
+- [📝 Commits](#📝-commit)
 <hr>
 
 ## 🧪 Technologies
@@ -38,13 +38,17 @@ yarn dev
 > 💡 You can see the list of all mandatories environment variables [here](./docs/ENVIRONMENT.md)
 <hr>
 
-- Architecture: 🏗️
-- Feature: ✨
-- Feature Update: 🔧
-- Bugfix: 🐛
-- Release: 🎉
-- Testing: ✅
-- Chore: ⬆️
-- Unstable: 🚧
-- Investigation: 🔎
-- Docs: 📝
+## 📝 Commit
+
+[I used this convention](https://gitmoji.dev/)
+| Label            | Code                     | Emoji |
+|------------------|--------------------------|-------|
+| Feature          | `:sparkles:`             | ✨   |
+| Deploy           | `:rocket:`               | 🚀   |
+| Documentation    | `:memo:`                 | 📝   |
+| Performance      | `:zap:`                  | ⚡️   |
+| Testing          | `:white_check_mark:`     | ✅   |
+| Fix Pipelines    | `:rotating_light:`       | 🚨   |
+| Work In Progress | `:construction:`         | 🚧   |
+| Experiment       | `:alembic:`              | ⚗️   |
+| Architecture     | `:building_construction` | 🏗️   |
