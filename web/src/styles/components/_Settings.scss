@@ -1,0 +1,29 @@
+.Settings {
+  width: 100%;
+
+  section {
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+      margin: $gutter 0;
+    }
+  }
+
+  &__sounds {
+    &__inputs {
+      display: flex;
+      gap: $gutter;
+
+      &__input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+
+        &__label {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}

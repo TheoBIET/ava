@@ -18,7 +18,7 @@ const build = async () => {
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
     webPreferences: {
-      preload: join(__dirname, 'preload.js'),
+      contextIsolation: false,
       nodeIntegration: true
     },
   });
@@ -28,6 +28,7 @@ const build = async () => {
   }
 
   await window.loadURL('http://localhost:8080');
+  isDev && window.webContents.openDevTools();
 };
 
 app.whenReady().then(build);
@@ -56,3 +57,33 @@ app.on('activate', () => {
 //     hardResetMethod: 'exit'
 //   });
 // }
+
+const { ipcMain } = require('electron');
+const { PythonShell } = require('python-shell');
+const EVENTS = require('../constants/ipcEvents.json');
+
+ipcMain.on(EVENTS.WINDOW.CLOSE, () => {
+  window.close();
+});
+
+ipcMain.on(EVENTS.WINDOW.MINIMIZE, () => {
+  window.minimize();
+});
+
+ipcMain.on(EVENTS.VOICE_DEVICES.GET, (event, _) => {
+  let options = {
+    mode: 'json',
+    pythonPath: 'app/ipc/scripts/.venv/Scripts/python.exe',
+    scriptPath: 'app/ipc/scripts',
+  };
+
+  PythonShell.run('voice-detection.py', options)
+    .then(([results]) => {
+      console.log('replying with voice devices');
+      event.reply(EVENTS.VOICE_DEVICES.SET, results);
+    })
+    .catch((err) => {
+      console.log('replying with error');
+      event.reply(EVENTS.VOICE_DEVICES.SET, err);
+    });
+});
