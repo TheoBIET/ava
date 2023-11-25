@@ -1,0 +1,26 @@
+services:
+  ava:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ava
+    container_name: ava-core
+    ports:
+      - "5173:5173" # Vite
+      - "3000:3000" # Rest API
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15.5-alpine
+    container_name: ava-postgres
+    ports:
+      - "5432:5432" # Postgres
+    environment:
+      POSTGRES_USER: ava
+      POSTGRES_PASSWORD: ava
+      POSTGRES_DB: ava
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data

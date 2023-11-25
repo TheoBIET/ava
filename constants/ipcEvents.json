@@ -1,0 +1,14 @@
+{
+  "WINDOW": {
+    "CLOSE": "close-frame",
+    "MINIMIZE": "minimize-frame"
+  },
+  "VOICE_DETECTION": {
+    "GET": "get-voice-detection",
+    "SET": "set-voice-detection"
+  },
+  "VOICE_DEVICES": {
+    "GET": "get-voice-devices",
+    "SET": "set-voice-devices"
+  }
+}

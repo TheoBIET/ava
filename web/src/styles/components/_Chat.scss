@@ -1,0 +1,29 @@
+.Chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: $gutter-3;
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    gap: $gutter;
+
+    &__message {
+      display: flex;
+      flex-direction: column;
+
+      &__text {
+        font-size: $t-4;
+        font-weight: $t-reg;
+        color: $white;
+      }
+
+      &__author {
+        font-size: $t-6;
+        font-weight: $t-bold;
+        color: $white;
+      }
+    }
+  }
+}

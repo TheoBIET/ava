@@ -1,0 +1,41 @@
+.InputText {
+  display: flex;
+  align-items: center;
+  background-color: darken($secondary, 10%);
+  border-radius: .2em;
+  padding: $gutter-d4;
+  width: 100%;
+  color: $white;
+
+  // Glow neon effect
+  &:focus-within {
+    outline: none;
+    box-shadow: 0 0 1px 2px $primary;
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    color: $white;
+    flex: 1;
+
+    &::placeholder {
+      color: grey;
+    }
+  }
+
+  button {
+    background-color: $primary;
+    border: none;
+    margin-left: $gutter-d4;
+    padding: $gutter-d4;
+    color: $white;
+    border-radius: .2em;
+    height: 2em;
+    width: 2em;
+
+    &:hover {
+      background-color: lighten($primary, 10%);
+    }
+  }
+}
