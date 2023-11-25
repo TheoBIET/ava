@@ -14,6 +14,6 @@ createRoot(element).render(
     <StrictMode>
       <Frame />
       <App />
-    </StrictMode>,
+    </StrictMode>
   </Provider>
 )

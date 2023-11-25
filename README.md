@@ -54,3 +54,31 @@ yarn dev
 | Architecture     | `:building_construction` | 🏗️   |
 | New dependency   | `:heavy_plus_sign:`      | ➕   |
 | Refactor         | `:recycle:`              | ♻️   |
+
+# Roadmap
+
+[] Intégrer les services d'OpenAI
+[] Commencer à écouter l'utilisateur lors de l'utilisation du mot "ava"
+[] Brancher le chat et utiliser des Observables
+[] Transcrire les phrases d'un utilisateurs puis les envoyer directement au chatbot
+[] Button Text To Speech
+[] Intégration R3F for make ava alive
+[] Synchronisation labiale lors du TTS
+[] Page de personnalisation du personnage
+[] Terminer la page de configuration
+[] Utilisation de variables d'environnement pour la config
+[] Utilisation de Ready Player Me
+[] Démarrer une documentation / blog
+[] Améliorer l'architecture
+[] Add keybinds
+[] Auto updater
+[] Packager l'application
+[] Release beta 1
+
+# Paramètres Audio
+Activation du Micro
+- Détection de la voix
+- Appuyer pour parler
+
+# Paramètres Langue
+

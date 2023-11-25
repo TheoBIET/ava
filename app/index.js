@@ -76,8 +76,8 @@ ipcMain.on(EVENTS.WINDOW.MINIMIZE, () => {
 ipcMain.on(EVENTS.VOICE_DEVICES.GET, (event, _) => {
   let options = {
     mode: 'json',
-    pythonPath: 'app/ipc/scripts/.venv/Scripts/python.exe',
-    scriptPath: 'app/ipc/scripts',
+    pythonPath: 'app/modules/voice-detection/.venv/Scripts/python.exe',
+    scriptPath: 'app/modules/voice-detection',
   };
 
   PythonShell.run('voice-detection.py', options)
