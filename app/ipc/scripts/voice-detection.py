@@ -44,3 +44,7 @@ class VoiceDetection:
             'output': output_devices,
             'input': input_devices
         })
+        
+if __name__ == "__main__":
+    voice_detection = VoiceDetection()
+    typer.echo(voice_detection.get_devices())

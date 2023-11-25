@@ -6,15 +6,15 @@ export default function SelectInput({
   selectedOption,
   setSelectedOption,
   label,
-  key,
+  idKey,
   textKey,
 }) {
   return (
     <div className="SelectInput">
       <label htmlFor={id}>{label}</label>
-      <select id={label} onChange={(e) => setSelectedOption(e.target.value)} value={selectedOption[key]}>
+      <select id={label} onChange={(e) => setSelectedOption(e.target.value)} value={selectedOption[idKey]}>
         {options.map((device, index) => (
-          <option key={index} value={device[key]}>{device[textKey]}</option>
+          <option key={index} value={device[idKey]}>{device[textKey]}</option>
         ))}
       </select>
     </div>
@@ -27,6 +27,6 @@ SelectInput.propTypes = {
   selectedOption: propTypes.object.isRequired,
   setSelectedOption: propTypes.func.isRequired,
   label: propTypes.string.isRequired,
-  key: propTypes.string.isRequired,
+  idKey: propTypes.string.isRequired,
   textKey: propTypes.string.isRequired,
 }

@@ -28,7 +28,10 @@ const build = async () => {
   }
 
   await window.loadURL('http://localhost:8080');
-  isDev && window.webContents.openDevTools();
+
+  if (isDev) {
+    window.webContents.openDevTools();
+  }
 };
 
 app.whenReady().then(build);
@@ -78,12 +81,10 @@ ipcMain.on(EVENTS.VOICE_DEVICES.GET, (event, _) => {
   };
 
   PythonShell.run('voice-detection.py', options)
-    .then(([results]) => {
-      console.log('replying with voice devices');
-      event.reply(EVENTS.VOICE_DEVICES.SET, results);
+    .then(([devices]) => {
+      event.reply(EVENTS.VOICE_DEVICES.SET, devices);
     })
     .catch((err) => {
-      console.log('replying with error');
       event.reply(EVENTS.VOICE_DEVICES.SET, err);
     });
 });
