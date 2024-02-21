@@ -5,12 +5,7 @@
   font-weight: $t-bold;
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  z-index: 1000;
+  border-radius: $gutter;
 
   &.--available {
     background-color: $orange;

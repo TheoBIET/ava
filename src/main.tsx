@@ -2,13 +2,13 @@ import './styles/index.css';
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { RouterProvider, createHashRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom'
 
 import Scene from "./components/Home";
 import Settings from './components/Settings';
 
-
-const router = createHashRouter([
+const createRouter = import.meta.env['DEV'] ? createBrowserRouter : createHashRouter;
+const router = createRouter([
   {
     path: '/',
     element: <Scene />
@@ -17,7 +17,7 @@ const router = createHashRouter([
     path: '/settings/:tab?',
     element: <Settings />
   },
-])
+]);
 
 createRoot(document.getElementById('app')!)
   .render(
@@ -25,8 +25,3 @@ createRoot(document.getElementById('app')!)
       <RouterProvider router={router} />
     </StrictMode>,
   )
-
-
-window.ipcRenderer.on('main-process-message', (_event, message) => {
-  console.log(message)
-})

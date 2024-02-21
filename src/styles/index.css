@@ -383,6 +383,11 @@ div {
 .Home__links:hover {
   opacity: 0.9;
 }
+.Home__version {
+  position: absolute;
+  top: 2.8125rem;
+  left: 2.8125rem;
+}
 
 .InputChat {
   background: red;
@@ -446,6 +451,7 @@ div {
   font-weight: 700;
   display: flex;
   justify-content: space-between;
+  border-radius: 0.9375rem;
 }
 .Version.--available {
   background-color: #ED9158;

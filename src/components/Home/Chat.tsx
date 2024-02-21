@@ -1,11 +1,11 @@
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
-import { useConversationStore } from "../../store/conversation";
+import { useChatStore } from "../../zustand/chat";
 
 export default function Chat({ className }: Readonly<{
   className: string;
 }>) {
-  const addMessage = useConversationStore((state) => state.addMessage);
+  const getChatCompletion = useChatStore((state) => state.getChatCompletion);
   const [canSend, setCanSend] = useState(true);
   const [input, setInput] = useState("");
 
@@ -13,7 +13,7 @@ export default function Chat({ className }: Readonly<{
     event.preventDefault();
     if (!input || !canSend) return;
 
-    addMessage({ author: "user", content: input });
+    getChatCompletion(input);
     setInput("");
     setCanSend(false);
     return;

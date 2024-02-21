@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import links from '../../constants/links';
 
-import Navigation from "./Navigation";
 import Audio from "./Audio";
+import Configuration from "./Configuration";
+import Navigation from "./Navigation";
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState(null);
@@ -21,6 +22,7 @@ export default function Settings() {
       <Navigation links={links} />
       <div className="Settings__content">
         {activeTab == "audio" && <Audio />}
+        {activeTab == "configuration" && <Configuration />}
       </div>
     </div>
   )

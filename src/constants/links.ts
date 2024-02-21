@@ -1,4 +1,4 @@
-import { IoLogoGithub } from "react-icons/io5";
+import { IoLogoGithub, IoSettings } from "react-icons/io5";
 import { BiSolidUserVoice } from "react-icons/bi";
 import { IconType } from "react-icons";
 
@@ -10,6 +10,11 @@ type Link = {
 };
 
 const Links: Link[] = [
+  {
+    path: '/settings/configuration',
+    title: 'General Configuration',
+    icon: IoSettings,
+  },
   {
     path: '/settings/audio',
     title: 'Audio',

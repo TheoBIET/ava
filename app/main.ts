@@ -1,70 +1,73 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { autoUpdater } from 'electron-updater'
+import { IpcChannelInterface } from './interfaces/IpcChannel';
 import path from 'node:path'
 
+import { SystemChannel } from './ipc/system';
+import { VersionChannel } from './ipc/version';
+
 process.env.DIST = path.join(__dirname, '../dist')
-process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.env.DIST, '../public')
+process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.env.DIST, '../public');
+const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL'];
 
-let win: BrowserWindow | null
-const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
+class Main {
+  private mainWindow: BrowserWindow | undefined;
 
-function createWindow() {
-  win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
-    width: 1600,
-    height: 900,
-    webPreferences: {
-      preload: path.join(__dirname, './preload/preload.js'),
-    },
-  })
+  public init(ipcChannels: IpcChannelInterface[]) {
+    app.on('ready', this.createWindow);
+    app.on('window-all-closed', this.onWindowAllClosed);
+    app.on('activate', this.onActivate);
 
-  win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', (new Date).toLocaleString())
-  })
+    autoUpdater.on('update-available', () => {
+      this.mainWindow?.webContents.send('update_available')
+    });
 
-  if (VITE_DEV_SERVER_URL) {
-    win.loadURL(VITE_DEV_SERVER_URL)
-  } else {
-    win.loadFile(path.join(process.env.DIST, 'index.html'))
+    autoUpdater.on('update-downloaded', () => {
+      this.mainWindow?.webContents.send('update_downloaded')
+    });
+
+    this.registerIpcChannels(ipcChannels);
   }
 
-  win.once('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify()
-  });
-};
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-    win = null
+  private onWindowAllClosed() {
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
   }
-});
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
+  private onActivate() {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      this.createWindow();
+    }
   }
-});
 
-app.on('ready', () => {
-  createWindow()
-});
+  private createWindow() {
+    this.mainWindow = new BrowserWindow({
+      icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
+      width: 1600,
+      height: 900,
+      webPreferences: {
+        preload: path.join(__dirname, './preload/preload.js'),
+      },
+    })
 
-ipcMain.on('get-app-version', (event) => {
-  event.sender.send('get-app-version', {
-    version: app.getVersion(),
-    updateAvailable: false,
-  })
-});
+    if (!VITE_DEV_SERVER_URL) this.mainWindow.loadFile(path.join(process.env.DIST, 'index.html'));
+    else {
+      this.mainWindow.loadURL(VITE_DEV_SERVER_URL);
+      this.mainWindow.webContents.openDevTools();
+    }
 
-ipcMain.on('quit-and-install', () => {
-  autoUpdater.quitAndInstall()
-});
+    this.mainWindow.on('ready-to-show', () => {
+      autoUpdater.checkForUpdatesAndNotify()
+    });
+  }
 
-autoUpdater.on('update-available', () => {
-  win?.webContents.send('update_available')
-});
+  private registerIpcChannels(ipcChannels: IpcChannelInterface[]) {
+    ipcChannels.forEach(channel => ipcMain.on(channel.getName(), (event, request) => channel.handle(event, request)));
+  }
+}
 
-autoUpdater.on('update-downloaded', () => {
-  win?.webContents.send('update_downloaded')
-});
+(new Main()).init([
+  new SystemChannel(),
+  new VersionChannel(),
+]);
