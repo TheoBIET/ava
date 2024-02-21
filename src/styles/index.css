@@ -1,0 +1,452 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+/* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  -webkit-touch-callout: none;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Améliorations */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a,
+del,
+ins {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+}
+
+label,
+button {
+  cursor: pointer;
+}
+
+input,
+button {
+  outline: 0;
+}
+
+body {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-family: "Ubuntu", arial;
+  background: #1b1b1b;
+  color: #f8f8ff;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  font-family: "Ubuntu", arial;
+  display: flex;
+  flex-direction: column;
+}
+#app .App {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+#app .App > div {
+  padding: 2.8125rem 5.625rem;
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+p,
+span,
+div {
+  font-size: 24px;
+}
+
+.InputSelect {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.InputSelect label {
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 0.234375rem;
+}
+.InputSelect select {
+  color: #f8f8ff;
+  background: #020202;
+  padding: 0.9375rem 0.46875rem;
+  border-radius: 3px;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  border: none;
+}
+
+.Audio {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  width: 100%;
+  height: 100%;
+}
+.Audio h4 {
+  margin-bottom: 0.9375rem;
+}
+.Audio__devices__wrapper {
+  display: flex;
+  gap: 1.875rem;
+}
+.Audio__recording__level {
+  display: flex;
+  gap: 0.234375rem;
+}
+.Audio__recording__level__bar {
+  background-color: #f8f8ff;
+  height: 1rem;
+  width: 0.5rem;
+  border-radius: 3px;
+}
+.Audio__recording__level__bar.--active {
+  background-color: #5f5fff;
+}
+
+.Conversation {
+  border-radius: 10px;
+  padding: 0.46875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9375rem;
+  overflow-y: auto;
+}
+.Conversation::-webkit-scrollbar {
+  width: 5px;
+  background: #5f5fff;
+  border-radius: 5px;
+}
+.Conversation::-webkit-scrollbar-thumb {
+  background: #58c2ec;
+  border-radius: 5px;
+}
+.Conversation__message {
+  background: #5f5fff;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 70%;
+  padding: 0.46875rem;
+  border-radius: 5px;
+}
+.Conversation__message.--user {
+  background: #58c2ec;
+  align-self: flex-end;
+}
+.Conversation__message p {
+  font-size: 14px;
+}
+
+.Links__item {
+  background: linear-gradient(101deg, rgba(48, 129, 161, 0.5647058824) -15%, rgba(95, 95, 255, 0.5647058824) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.9375rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.Navigation {
+  height: 100%;
+  background: #020202;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+  padding: 0.9375rem;
+}
+.Navigation__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9375rem;
+  flex: 2;
+}
+.Navigation__links__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1b1b1b;
+  border-radius: 50%;
+  line-height: 0.9;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+}
+.Navigation__links__item.--quit {
+  color: red;
+}
+.Navigation__links__item:hover {
+  background-color: color;
+}
+
+.Home {
+  width: 100%;
+  height: 100%;
+  background: url("/images/scene.jpg") no-repeat center center fixed;
+}
+.Home__chat {
+  position: absolute;
+  bottom: 2.8125rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+}
+.Home__conversation {
+  position: absolute;
+  top: 2.8125rem;
+  right: 2.8125rem;
+  width: 20%;
+  height: 50%;
+}
+.Home__links {
+  position: absolute;
+  bottom: 2.8125rem;
+  left: 2.8125rem;
+  transition: 0.3s;
+}
+.Home__links:hover {
+  opacity: 0.9;
+}
+
+.InputChat {
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 10px 14px;
+  background: linear-gradient(101deg, rgba(48, 129, 161, 0.5647058824) -15%, rgba(95, 95, 255, 0.5647058824) 100%);
+  border-radius: 10px;
+}
+.InputChat input[type=text] {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: #f8f8ff;
+  font-size: 1.5rem;
+}
+.InputChat input[type=text]::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4392156863);
+  font-family: "Ubuntu";
+}
+.InputChat input[type=text]::placeholder {
+  color: rgba(255, 255, 255, 0.4392156863);
+  font-family: "Ubuntu";
+}
+.InputChat button {
+  background: #2c2cff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.234375rem 0.46875rem;
+  color: #f8f8ff;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  transition: 0.3s;
+}
+.InputChat button:hover {
+  opacity: 0.9;
+}
+
+.Settings {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.Settings__content {
+  padding: 2.8125rem 4.6875rem;
+}
+.Settings__content h3 {
+  margin-bottom: 1.875rem;
+}
+
+.Version {
+  background-color: #58EDB5;
+  padding: 0.9375rem;
+  color: #f8f8ff;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}
+.Version.--available {
+  background-color: #ED9158;
+}/*# sourceMappingURL=index.css.map */

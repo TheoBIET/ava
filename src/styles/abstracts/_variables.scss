@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+$gutter: 0.9375rem;
+$gutter-2: calc($gutter * 2);
+$gutter-3: calc($gutter * 3);
+$gutter-4: calc($gutter * 4);
+$gutter-5: calc($gutter * 5);
+$gutter-6: calc($gutter * 6);
+$gutter-d1: calc($gutter * 0.75);
+$gutter-d2: calc($gutter / 2);
+$gutter-d4: calc($gutter / 4);
+
+$primary: #5f5fff;
+$secondary: #1b1b1b;
+$tertiary: #58c2ec;
+$green: #58EDB5;
+$orange: #ED9158;
+$white: #f8f8ff;
+$glassmorphism: linear-gradient(101deg, #3081a190 -15%, #5f5fff90 100%);
+
+$t-1: 64px;
+$t-2: 48px;
+$t-3: 36px;
+$t-4: 24px;
+$t-5: 18px;
+$t-6: 14px;
+$t-reg: 400;
+$t-bold: 700;
+$t-black: 900;
+$arial: "Ubuntu", arial;
+$handwriting: "Caveat", cursive;

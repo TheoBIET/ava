@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  user-select: none;
+  font-family: $arial;
+  background: $secondary;
+  color: $white;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  font-family: $arial;
+  display: flex;
+  flex-direction: column;
+
+  .App {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    &>div {
+      padding: $gutter-3 $gutter-6;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+h1 {
+  font-size: $t-1;
+  font-weight: $t-bold;
+}
+
+h2 {
+  font-size: $t-2;
+  font-weight: $t-bold;
+}
+
+h3 {
+  font-size: $t-3;
+  font-weight: $t-bold;
+}
+
+p,
+span,
+div {
+  font-size: $t-4;
+}
