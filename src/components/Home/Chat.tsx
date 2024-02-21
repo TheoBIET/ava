@@ -6,22 +6,21 @@ export default function Chat({ className }: Readonly<{
   className: string;
 }>) {
   const getChatCompletion = useChatStore((state) => state.getChatCompletion);
-  const [canSend, setCanSend] = useState(true);
+  const isLoading = useChatStore((state) => state.isLoading);
   const [input, setInput] = useState("");
 
   const handleSend = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!input || !canSend) return;
+    if (!input || isLoading) return;
 
     getChatCompletion(input);
     setInput("");
-    setCanSend(false);
     return;
   }
 
   return (
     <div className={`Chat ${className}`}>
-      {canSend && (
+      {!isLoading && (
         <form className="InputChat" onSubmit={handleSend}>
           <input
             type="text"

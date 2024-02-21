@@ -1,10 +1,11 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import { autoUpdater } from 'electron-updater'
-import { IpcChannelInterface } from './interfaces/IpcChannel';
+import { IpcChannelInterface } from '../shared/interfaces/IpcChannel';
 import path from 'node:path'
 
 import { SystemChannel } from './ipc/system';
 import { VersionChannel } from './ipc/version';
+import { ChatChannel } from './ipc/chat';
 
 process.env.DIST = path.join(__dirname, '../dist')
 process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.env.DIST, '../public');
@@ -70,4 +71,5 @@ class Main {
 (new Main()).init([
   new SystemChannel(),
   new VersionChannel(),
+  new ChatChannel(),
 ]);

@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { Message, ChatResponse } from "ollama";
-import ChatbotService from "../services/chatbot";
+import { Message } from "ollama";
+import { IpcService } from "../services/ipcService";
 
 type State = {
   isLoading: boolean;
@@ -14,22 +14,14 @@ export const useChatStore = create<State>((set, get) => ({
   isError: false,
   messages: [],
   getChatCompletion: async (input: string) => {
-    window.ipcRenderer.send("chat", input);
-    // const chatbot = new ChatbotService();
+    set((state) => ({ messages: [...state.messages, { content: input, role: 'user' }], isLoading: true }));
+    const response = await (new IpcService()).send('chat', {
+      args: {
+        messages: get().messages
+      }
+    });
 
-    // set({ isError: false });
-    // set({ isLoading: true });
-    // set({ messages: [...get().messages, {
-    //   content: input,
-    //   role: "user",
-    // }]});
-
-    // try {
-    //   const response: ChatResponse = await chatbot.chat(get().messages);
-    //   set({ messages: [...get().messages, response.message]});
-    //   set({ isLoading: false });
-    // } catch (error) {
-    //   set({ isError: true });
-    // }
-  },
+    if (response instanceof Error) set({ isError: true });
+    else set((state) => ({ messages: [...state.messages, response as Message], isLoading: false }));
+  }
 }));

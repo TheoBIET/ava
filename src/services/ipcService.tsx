@@ -1,23 +1,22 @@
 import { IpcRenderer } from "electron";
-import { IpcRequest } from "../interfaces/IpcRequest";
+import { IpcRequest } from "../../shared/interfaces/IpcRequest";
 
 export class IpcService {
   private ipcRenderer: IpcRenderer | null = null;
 
-  public send<T>(channel: string, request: IpcRequest = { channel: '', params: []}): Promise<T> {
+  public send<T>(channel: string, request: IpcRequest = { responseChannel: '', args: {}}): Promise<T> {
     if (!this.ipcRenderer) this.init();
-    if (!request.channel) request.channel = `${channel}_response_${new Date().getTime()}`;
+    if (!request.responseChannel) request.responseChannel = `${channel}_response_${new Date().getTime()}`;
 
     const ipcRenderer = this.ipcRenderer;
     ipcRenderer?.send(channel, request);
 
     return new Promise(resolve => {
-      ipcRenderer?.once(request.channel, (_, response) => resolve(response));
+      ipcRenderer?.once(request.responseChannel as string, (_, response) => resolve(response));
     });
   }
 
   private init() {
-    console.log(window);
     if (!window || !window.ipcRenderer) {
       throw new Error('Unable to require renderer process');
     }

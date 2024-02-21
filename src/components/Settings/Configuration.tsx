@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
 import { IpcService } from "../../services/ipcService";
-
-interface System {
-  version: string;
-  type: string;
-  arch: string;
-  cpus: string;
-  memory: string;
-}
+import { System } from "../../../shared/interfaces/System";
 
 export default function Configuration() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [system, setSystem] = useState<System>({ 
     version: '',
     type: '',

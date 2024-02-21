@@ -1,5 +1,6 @@
-import { IpcChannelInterface } from "../interfaces/IpcChannel";
-import { IpcRequest } from "../interfaces/IpcRequest";
+import { IpcChannelInterface } from "../../shared/interfaces/IpcChannel";
+import { IpcRequest } from "../../shared/interfaces/IpcRequest";
+import { System } from "../../shared/interfaces/System";
 import { IpcMainEvent } from 'electron';
 import os from 'node:os';
 
@@ -9,13 +10,13 @@ export class SystemChannel implements IpcChannelInterface {
   }
 
   async handle(event: IpcMainEvent, request: IpcRequest): Promise<void> {
-    if(!request.channel) request.channel = `${this.getName()}_response`;
-    event.sender.send(request.channel, {
+    if(!request.responseChannel) request.responseChannel = `${this.getName()}_response`;
+    event.sender.send(request.responseChannel, {
       version: os.version(),
       arch: os.arch(),
       type: os.type(),
-      cpus: os.cpus(),
+      cpus: String(os.cpus().length),
       memory: (os.totalmem() / 1024 / 1024 / 1024).toFixed(2),
-    });
+    } as System);
   }
 }
