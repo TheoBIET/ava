@@ -12,10 +12,8 @@ export class SystemChannel implements IpcChannelInterface {
   async handle(event: IpcMainEvent, request: IpcRequest): Promise<void> {
     if(!request.responseChannel) request.responseChannel = `${this.getName()}_response`;
     event.sender.send(request.responseChannel, {
-      version: os.version(),
-      arch: os.arch(),
-      type: os.type(),
-      cpus: String(os.cpus().length),
+      arch: `${os.type()} ${os.arch()}`,
+      cpus: os.cpus()[0].model,
       memory: (os.totalmem() / 1024 / 1024 / 1024).toFixed(2),
     } as System);
   }

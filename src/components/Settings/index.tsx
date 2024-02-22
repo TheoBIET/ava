@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import links from '../../constants/links';
 
 import Audio from "./Audio";
-import Configuration from "./Configuration";
+import Configuration from "./General";
 import Navigation from "./Navigation";
 
 export default function Settings() {

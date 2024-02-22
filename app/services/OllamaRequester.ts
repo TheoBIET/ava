@@ -24,6 +24,10 @@ export class OllamaRequester {
     });
   }
 
+  async test() {
+    return this.#api.get('/api/version');
+  }
+
   async chat(messages: Message[]) {
     console.log('chat', messages);
     return this.#api.post('/api/chat', {

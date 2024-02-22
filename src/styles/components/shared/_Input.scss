@@ -1,4 +1,4 @@
-.InputSelect {
+.Input {
   display: flex;
   flex-direction: column;
   margin-bottom: $gutter;
@@ -10,16 +10,14 @@
     margin-bottom: $gutter-d4;
   }
 
-  select {
+  input[type="text"] {
     color: $white;
     background: darken($secondary, 10%);
     padding: $gutter $gutter-d2;
     border-radius: 3px;
     font-size: $t-6;
-    text-transform: uppercase;
     width: 100%;
     appearance: none;
-    cursor: pointer;
     border: none;
   }
 }

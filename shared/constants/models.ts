@@ -1,54 +1,59 @@
+export interface Model {
+  label: string;
+  name: string;
+}
+
 export const models = [
   {
-    name: "Llama 2",
-    model: "llama2",
+    label: "Llama 2",
+    name: "llama2",
   },
   {
-    name: "Mistral",
-    model: "mistral",
+    label: "Mistral",
+    name: "mistral",
   },
   {
-    name: "Dolphin Phi",
-    model: "dolphin-phi",
+    label: "Dolphin Phi",
+    name: "dolphin-phi",
   },
   {
-    name: "Phi-2",
-    model: "phi",
+    label: "Phi-2",
+    name: "phi",
   },
   {
-    name: "Neural Chat",
-    model: "neural-chat",
+    label: "Neural Chat",
+    name: "neural-chat",
   },
   {
-    name: "Starling",
-    model: "starling-lm",
+    label: "Starling",
+    name: "starling-lm",
   },
   {
-    name: "Code Llama",
-    model: "codellama",
+    label: "Code Llama",
+    name: "codellama",
   },
   {
-    name: "Llama 2 Uncensored",
-    model: "llama2-uncensored",
+    label: "Llama 2 Uncensored",
+    name: "llama2-uncensored",
   },
   {
-    name: "Llama 2 13B",
-    model: "llama2:13b",
+    label: "Llama 2 13B",
+    name: "llama2:13b",
   },
   {
-    name: "Llama 2 70B",
-    model: "llama2:70b",
+    label: "Llama 2 70B",
+    name: "llama2:70b",
   },
   {
-    name: "Orca Mini",
-    model: "orca-mini",
+    label: "Orca Mini",
+    name: "orca-mini",
   },
   {
-    name: "Vicuna",
-    model: "vicuna",
+    label: "Vicuna",
+    name: "vicuna",
   },
   {
-    name: "LLaVA",
-    model: "llava",
+    label: "LLaVA",
+    name: "llava",
   }
 ];

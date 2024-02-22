@@ -446,9 +446,34 @@ div {
   margin-bottom: 1.875rem;
 }
 
+.Input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.9375rem;
+  width: 100%;
+}
+.Input label {
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 0.234375rem;
+}
+.Input input[type=text] {
+  color: #f8f8ff;
+  background: #020202;
+  padding: 0.9375rem 0.46875rem;
+  border-radius: 3px;
+  font-size: 14px;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+}
+
 .InputSelect {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.9375rem;
   width: 100%;
 }
 .InputSelect label {

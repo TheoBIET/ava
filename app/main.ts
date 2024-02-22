@@ -6,6 +6,7 @@ import { IpcChannelInterface } from '../shared/interfaces/IpcChannel';
 import { SystemChannel } from './ipc/system';
 import { VersionChannel } from './ipc/version';
 import { ChatChannel } from './ipc/chat';
+import { OllamaVersionChannel } from './ipc/ollama-version';
 
 process.env.DIST = path.join(__dirname, '../dist')
 process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.env.DIST, '../public');
@@ -83,4 +84,5 @@ new Main([
   new SystemChannel(),
   new VersionChannel(),
   new ChatChannel(),
+  new OllamaVersionChannel(),
 ]);
