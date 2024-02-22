@@ -2,14 +2,14 @@
 // @ts-nocheck
 import { useState, useEffect } from 'react';
 
-export default function useVoice({ voiceThreshold }: Readonly<{
+export default function useSpeechRecognition({ voiceThreshold }: Readonly<{
   voiceThreshold: number;
 }>) {
   const [isAudioAPILoaded, setIsAudioAPILoaded] = useState(false);
   const [inputDevices, setInputDevices] = useState([]);
   const [outputDevices, setOutputDevices] = useState([]);
-  const [selectedInputDevice, setSelectedInputDevice] = useState(null);
-  const [selectedOutputDevice, setSelectedOutputDevice] = useState(null);
+  const [selectedInputDevice, setSelectedInputDevice] = useState<string | null>(null);
+  const [selectedOutputDevice, setSelectedOutputDevice] = useState<string | null>(null);
   const [voiceDetected, setVoiceDetected] = useState(false);
   const [currentVoiceLevel, setCurrentVoiceLevel] = useState(0);
   const [silenceDuration, setSilenceDuration] = useState(0);
@@ -68,7 +68,9 @@ export default function useVoice({ voiceThreshold }: Readonly<{
     inputDevices,
     outputDevices,
     selectedInputDevice,
+    setSelectedInputDevice,
     selectedOutputDevice,
+    setSelectedOutputDevice,
     voiceDetected,
     currentVoiceLevel,
     startListen,
