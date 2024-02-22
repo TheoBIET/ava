@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Message } from "ollama";
-import { IpcService } from "../services/ipcService";
+import IpcService from "../services/ipcService";
 
 type State = {
   isLoading: boolean;
@@ -15,7 +15,7 @@ export const useChatStore = create<State>((set, get) => ({
   messages: [],
   getChatCompletion: async (input: string) => {
     set((state) => ({ messages: [...state.messages, { content: input, role: 'user' }], isLoading: true }));
-    const response = await (new IpcService()).send('chat', {
+    const response = await IpcService.send('chat', {
       args: {
         messages: get().messages
       }

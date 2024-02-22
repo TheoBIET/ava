@@ -24,3 +24,5 @@ export class IpcService {
     this.ipcRenderer = window.ipcRenderer;
   }
 }
+
+export default new IpcService();

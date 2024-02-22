@@ -25,6 +25,7 @@ export class OllamaRequester {
   }
 
   async chat(messages: Message[]) {
+    console.log('chat', messages);
     return this.#api.post('/api/chat', {
       model: this.#opts.model || 'mistral',
       stream: !!this.#opts.stream,

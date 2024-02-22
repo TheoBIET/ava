@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IpcService } from "../../services/ipcService";
+import IpcService from "../../services/ipcService";
 import { System } from "../../../shared/interfaces/System";
 
 export default function Configuration() {
@@ -12,7 +12,7 @@ export default function Configuration() {
   });
 
   useEffect(() => {
-    (new IpcService()).send('system').then((res) => {
+    IpcService.send('system').then((res) => {
       setSystem(res as System);
     });
   }, []);

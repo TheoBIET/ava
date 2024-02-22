@@ -224,23 +224,76 @@ div {
   font-size: 24px;
 }
 
-.Version {
-  background-color: #58EDB5;
-  padding: 0.9375rem;
-  color: #f8f8ff;
-  font-weight: 700;
+.Frame {
   display: flex;
   justify-content: space-between;
-  border-radius: 0.9375rem;
+  align-items: center;
+  padding: 0.46875rem 1.875rem;
+  background-color: #3838a1;
+  -webkit-app-region: drag;
+  font-weight: 400;
+}
+.Frame__container {
+  display: flex;
+  gap: 1.875rem;
+  align-items: center;
+}
+.Frame__container__title {
+  font-size: 18px;
+}
+.Frame__actions {
+  display: flex;
+  gap: 0.9375rem;
+  -webkit-app-region: no-drag;
+  align-items: center;
+}
+.Frame__actions__action {
+  font-size: 24px;
+  border: none;
+  background-color: transparent;
+  color: #f8f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Version {
+  background-color: #4dce9c;
+  padding: 0.46875rem;
+  color: #f8f8ff;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.46875rem;
+  border-radius: 10px;
+  -webkit-app-region: no-drag;
+}
+.Version__version {
+  font-size: 18px;
+}
+.Version__action {
+  font-size: 14px;
+  border: 1px solid #f8f8ff;
+  border-radius: 50%;
+  padding: 0.234375rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Version.--available {
   background-color: #ED9158;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.Version.--available:hover {
+  background-color: #e8732a;
 }
 
 .Home {
   width: 100%;
   height: 100%;
-  background: url("/images/scene.jpg") no-repeat center center fixed;
+  background: url("/images/scene.jpg") center center/cover;
 }
 .Home__chat {
   position: absolute;
@@ -264,11 +317,6 @@ div {
 }
 .Home__links:hover {
   opacity: 0.9;
-}
-.Home__version {
-  position: absolute;
-  top: 2.8125rem;
-  left: 2.8125rem;
 }
 
 .InputChat {
@@ -297,7 +345,7 @@ div {
   font-family: "Ubuntu";
 }
 .InputChat button {
-  background: #2c2cff;
+  background: #3838a1;
   border: none;
   border-radius: 6px;
   padding: 0.234375rem 0.46875rem;
@@ -349,7 +397,7 @@ div {
   border-radius: 3px;
 }
 .Audio__recording__level__bar.--active {
-  background-color: #5f5fff;
+  background-color: #4c4cc0;
 }
 
 .Navigation {
@@ -434,7 +482,7 @@ div {
 }
 .Conversation::-webkit-scrollbar {
   width: 5px;
-  background: #5f5fff;
+  background: #4c4cc0;
   border-radius: 5px;
 }
 .Conversation::-webkit-scrollbar-thumb {
@@ -442,7 +490,7 @@ div {
   border-radius: 5px;
 }
 .Conversation__message {
-  background: #5f5fff;
+  background: #4c4cc0;
   width: -moz-fit-content;
   width: fit-content;
   max-width: 70%;
