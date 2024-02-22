@@ -2,7 +2,7 @@ import Avatar from "./Avatar";
 import Chat from "./Chat";
 import Conversation from "./Conversation";
 import Links from "./Links";
-import Version from "./Version";
+import Version from "../Frame/Version";
 
 export default function Home() {
   return (

@@ -1,9 +1,13 @@
-@import "shared/InputSelect";
+@import "Frame/Frame";
+@import "Frame/Version";
 
-@import "Audio";
-@import "Conversation";
-@import "Links";
-@import "Navigation";
-@import "Home";
-@import "Settings";
-@import "Version";
+@import "Home/Home";
+@import "Home/Links";
+
+@import "Settings/Audio";
+@import "Settings/Navigation";
+@import "Settings/Settings";
+
+@import "Shared/InputSelect";
+
+@import "Widgets/Conversation";

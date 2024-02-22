@@ -27,6 +27,12 @@
     "app",
     "shared/interfaces"
   ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "public",
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

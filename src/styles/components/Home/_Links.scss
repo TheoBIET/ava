@@ -1,0 +1,11 @@
+.Links {
+  &__item {
+    background: $glassmorphism;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $gutter;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
