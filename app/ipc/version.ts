@@ -10,8 +10,6 @@ export class VersionChannel implements IpcChannelInterface {
 
   async handle(event: IpcMainEvent, request: IpcRequest): Promise<void> {
     if(!request.responseChannel) request.responseChannel = `${this.getName()}_response`;
-    event.sender.send(request.responseChannel, {
-      version: app.getVersion(),
-    } as Version);
+    event.sender.send(request.responseChannel, { data: { version: app.getVersion() } as Version });
   }
 }

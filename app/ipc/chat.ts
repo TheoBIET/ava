@@ -1,11 +1,16 @@
 import { IpcChannelInterface } from "../../shared/interfaces/IpcChannel";
 import { IpcRequest } from "../../shared/interfaces/IpcRequest";
+import { Model } from "../../shared/constants/models";
+
 import { IpcMainEvent } from 'electron';
 import { OllamaRequester, Message } from "../services/OllamaRequester";
+import { IpcResponseService } from "../services/IpcResponse";
 
-interface ChatChannelRequest extends IpcRequest {
+interface RequestOpts extends IpcRequest {
   args: {
     messages: Message[];
+    apiUrl: string;
+    model: Model;
   }
 }
 
@@ -14,20 +19,17 @@ export class ChatChannel implements IpcChannelInterface {
     return 'chat';
   }
 
-  async handle(event: IpcMainEvent, request: ChatChannelRequest): Promise<void> {
+  async handle(event: IpcMainEvent, request: RequestOpts): Promise<void> {
     if (!request.responseChannel) request.responseChannel = `${this.getName()}_response`;
     try {
-      const chatbot = new OllamaRequester({
-        apiURL: 'http://127.0.0.1:11434',
-        model: 'mistral',
-      });
-
-      const response = await chatbot.chat(request.args.messages) as { data: { message: Message } };
-      event.sender.send(request.responseChannel, response.data.message);
+      const { messages, apiUrl, model } = request.args;
+      const chatbot = new OllamaRequester({ apiUrl, model: model.name });
+      const response = await chatbot.chat(messages);
+      IpcResponseService.send(event, request.responseChannel, response);
     } catch (error) {
-      event.sender.send(request.responseChannel, {
-        error: true,
-        message: 'Error in chatbot request.'
+      IpcResponseService.send(event, request.responseChannel, {}, {
+        status: 'KO',
+        message: 'Error in chatbot request.',
       });
     }
   }

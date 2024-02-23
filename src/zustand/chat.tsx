@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { Message } from "ollama";
 import IpcService from "../services/ipcService";
+import { useOllamaStore } from "./ollama";
+import { IpcResponse } from "../../shared/interfaces/IpcResponse";
 
 type State = {
   isLoading: boolean;
@@ -16,12 +18,15 @@ export const useChatStore = create<State>((set, get) => ({
   getChatCompletion: async (input: string) => {
     set((state) => ({ messages: [...state.messages, { content: input, role: 'user' }], isLoading: true }));
     const response = await IpcService.send('chat', {
-      args: {
-        messages: get().messages
-      }
-    });
+      apiUrl: useOllamaStore.getState().apiUrl,
+      model: useOllamaStore.getState().selectedModel,
+      messages: get().messages,
+    }) as IpcResponse;
 
-    if (response instanceof Error) set({ isError: true });
-    else set((state) => ({ messages: [...state.messages, response as Message], isLoading: false }));
+    console.log(response);
+
+    if (response.error.status !== 'KO') {
+      set((state) => ({ messages: [...state.messages, response.data.message], isLoading: false }));
+    }
   }
 }));

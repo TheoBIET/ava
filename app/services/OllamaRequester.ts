@@ -7,7 +7,7 @@ export interface Message {
 }
 
 export interface OllamaRequesterConfig {
-  apiURL?: string 
+  apiUrl?: string 
   model?: string 
   stream?: boolean
 }
@@ -19,21 +19,32 @@ export class OllamaRequester {
   constructor(opts: OllamaRequesterConfig) {
     this.#opts = opts;
     this.#api = axios.create({
-      baseURL: opts.apiURL,
+      baseURL: opts.apiUrl,
       proxy: false,
     });
   }
 
-  async test() {
-    return this.#api.get('/api/version');
+  async test(): Promise<{ version: string }> {
+    try {
+      const response = await this.#api.get('/api/version');
+      return response.data;
+    } catch (error) {
+      console.log(error)
+      throw new Error();
+    }
   }
 
-  async chat(messages: Message[]) {
-    console.log('chat', messages);
-    return this.#api.post('/api/chat', {
-      model: this.#opts.model || 'mistral',
-      stream: !!this.#opts.stream,
-      messages,
-    });
+  async chat(messages: Message[]): Promise<{ message: Message }> {
+    try {
+      const response = await this.#api.post('/api/chat', {
+        model: this.#opts.model || 'mistral',
+        stream: !!this.#opts.stream,
+        messages,
+      });
+
+      return response.data;
+    } catch (error) {
+      throw new Error();
+    }
   }
 }

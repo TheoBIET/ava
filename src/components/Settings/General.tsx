@@ -1,40 +1,36 @@
-import { useEffect, useState } from "react";
-import { System } from "../../../shared/interfaces/System";
-import IpcService from "../../services/ipcService";
+import { useEffect } from "react";
 import { useOllamaStore } from "../../zustand/ollama";
+import IpcService from "../../services/ipcService";
 
 export default function General() {
-  const [ollamaVersion, setOllamaVersion] = useState<string>('');
-  const [system, setSystem] = useState<System>({ 
-    arch: '',
-    cpus: '',
-    memory: '',
-  });
-
+  const isApiRunning = useOllamaStore((state) => state.isApiRunning);
+  const apiVersion = useOllamaStore((state) => state.apiVersion);
+  const setApiUrl = useOllamaStore((state) => state.setApiUrl);
   const apiUrl = useOllamaStore((state) => state.apiUrl);
   const selectedModel = useOllamaStore((state) => state.selectedModel);
   const models = useOllamaStore((state) => state.models);
 
   useEffect(() => {
-    IpcService.send('system').then((res) => {
-      setSystem(res as System);
-    });
+    IpcService.send('ollama-version',  { apiUrl }).then((res) => {
+      console.log(res)
+      if (res.error.status !== 'KO') {
+        useOllamaStore.setState({ 
+          isApiRunning: true,
+          apiVersion: res.data.version
+        });
 
-    IpcService.send('ollama-version').then((res) => {
-      setOllamaVersion(res as string);
+        console.log(useOllamaStore.getState())
+      }
     });
-  }, []);
+  }, [apiUrl]);
 
   return (
     <div className="General">
       <h3>General configuration</h3>
-      <p>{system.arch}</p>
-      <p>{system.cpus}</p>
-      <p>{system.memory}GB of memory</p>
       {
-        ollamaVersion === '' 
-          ? <p>Ollama version not found, are you sure that the server is running?</p>
-          : <p>Ollama version: {ollamaVersion}</p>
+        isApiRunning
+          ? <p>Ollama version: {apiVersion}</p>
+          : <p>Ollama version not found, are you sure that the server is running?</p>
       }
       <br></br> {/* 💩 */}
       <div className="InputSelect">
@@ -49,7 +45,7 @@ export default function General() {
       </div>
       <div className="Input">
         <label>Ollama API URL :</label>
-        <input type="text" value={apiUrl} onChange={(e) => useOllamaStore.setState({ apiUrl: e.target.value })} />
+        <input type="text" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} />
       </div>
     </div>
   )

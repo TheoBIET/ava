@@ -1,18 +1,22 @@
 import { IpcRenderer } from "electron";
 import { IpcRequest } from "../../shared/interfaces/IpcRequest";
+import { IpcResponse } from "../../shared/interfaces/IpcResponse";
 
 export class IpcService {
   private ipcRenderer: IpcRenderer | null = null;
 
-  public send<T>(channel: string, request: IpcRequest = { responseChannel: '', args: {}}): Promise<T> {
+  public send(channel: string, args = {}): Promise<IpcResponse> {
     if (!this.ipcRenderer) this.init();
-    if (!request.responseChannel) request.responseChannel = `${channel}_response_${new Date().getTime()}`;
-
+    const request: IpcRequest = { 
+      responseChannel: `${channel}_response_${new Date().getTime()}`,
+      args
+    }
+    
     const ipcRenderer = this.ipcRenderer;
     ipcRenderer?.send(channel, request);
 
     return new Promise(resolve => {
-      ipcRenderer?.once(request.responseChannel as string, (_, response) => resolve(response));
+      ipcRenderer?.once(request.responseChannel as string, (_, response) => resolve(response as IpcResponse));
     });
   }
 
