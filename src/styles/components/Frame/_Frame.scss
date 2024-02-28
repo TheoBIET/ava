@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $gutter-d3 $gutter-2;
+  padding: 10px $gutter-2;
   background-color: darken($primary, 10%);
   -webkit-app-region: drag;
   font-weight: $t-reg;

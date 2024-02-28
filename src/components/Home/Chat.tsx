@@ -1,38 +1,44 @@
-import { IoSend } from "react-icons/io5";
-import { useState } from "react";
-import { useChatStore } from "../../zustand/chat";
+import { IoSend } from 'react-icons/io5';
+import { useState } from 'react';
+import { useChatStore } from '../../zustand/chat';
 
-export default function Chat({ className }: Readonly<{
+export default function Chat({
+  className,
+}: Readonly<{
   className: string;
 }>) {
   const getChatCompletion = useChatStore((state) => state.getChatCompletion);
   const isLoading = useChatStore((state) => state.isLoading);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
   const handleSend = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!input || isLoading) return;
 
     getChatCompletion(input);
-    setInput("");
+    setInput('');
     return;
-  }
+  };
 
   return (
     <div className={`Chat ${className}`}>
       {!isLoading && (
-        <form className="InputChat" onSubmit={handleSend}>
-          <input
-            type="text"
-            placeholder="Ask me anything..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button type="submit">
-            <IoSend />
-          </button>
-        </form>
+        <>
+          <div className='InputDesign__upper' />
+          <form className='InputChat' onSubmit={handleSend}>
+            <input
+              type='text'
+              placeholder='Ask me anything...'
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <button type='submit'>
+              <IoSend />
+            </button>
+          </form>
+          <div className='InputDesign__under' />
+        </>
       )}
     </div>
-  )
+  );
 }
