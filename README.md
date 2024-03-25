@@ -45,4 +45,4 @@ Thanks to [Ollama](), [Hugging Face](), [Ready Player Me]() their amazing work w
   - Eleven Labs (External API) *🔐 Need an API Token*
   - Bark AI (Local) *🏗️ Work in progress*
 - **Text generation**
-  - Ollama Server (Local API) *⚡Can run on multiple devices depending on the model*
+  - Ollama Server (Local API) *⚡Can run on multiple devices depending on the model*²

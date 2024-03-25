@@ -1,9 +1,10 @@
-import { IpcChannelInterface } from "../../shared/interfaces/IpcChannel";
-import { IpcRequest } from "../../shared/interfaces/IpcRequest";
-
 import { IpcMainEvent } from 'electron';
+import { IpcRequest } from "../../shared/interfaces/IpcRequest";
+import { OllamaRequestError } from '../../shared/errors/OllamaRequest';
 import { OllamaRequester } from "../services/OllamaRequester";
 import { IpcResponseService } from "../services/IpcResponse";
+import { IpcRequestService } from "../services/IpcRequest";
+import { logger } from '../services/Logger';
 
 interface RequestOpts extends IpcRequest {
   args: {
@@ -11,22 +12,24 @@ interface RequestOpts extends IpcRequest {
   }
 }
 
-export class OllamaVersionChannel implements IpcChannelInterface {
+export class OllamaVersionChannel extends IpcRequestService {
   getName(): string {
     return 'ollama-version';
   }
 
-  async handle(event: IpcMainEvent, request: RequestOpts): Promise<void> {
-    if (!request.responseChannel) request.responseChannel = `${this.getName()}_response`;
+  async execute(event: IpcMainEvent, request: RequestOpts, channel: string): Promise<void> {
     try {
       const { apiUrl } = request.args;
       const ollamaApi = new OllamaRequester({ apiUrl });
       const response = await ollamaApi.test();
-      IpcResponseService.send(event, request.responseChannel, response);
+      IpcResponseService.send(event, channel, response.data);
     } catch (error) {
-      IpcResponseService.send(event, request.responseChannel, {}, {
+      let message = 'Unknown Error';
+      if (error instanceof OllamaRequestError) message = error.message;
+      logger.error({ message });
+      IpcResponseService.send(event, channel, {}, {
         status: 'KO',
-        message: 'Error during request Ollama API, please be sure that the server is running',
+        message,
       });
     }
   }

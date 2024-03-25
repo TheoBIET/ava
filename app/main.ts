@@ -1,7 +1,8 @@
-import path from 'node:path'
-import { app, BrowserWindow, ipcMain } from 'electron'
-import { autoUpdater } from 'electron-updater'
+import path from 'node:path';
+import { app, BrowserWindow, ipcMain } from 'electron';
+import { autoUpdater } from 'electron-updater';
 import { IpcChannelInterface } from '../shared/interfaces/IpcChannel';
+import { logger } from './services/Logger';
 
 import { SystemChannel } from './ipc/system';
 import { VersionChannel } from './ipc/version';
@@ -36,6 +37,7 @@ class Main {
   }
 
   private createWindow() {
+    logger.debug({ message: 'Creating main window', env: process.env.NODE_ENV });
     this.mainWindow = new BrowserWindow({
       icon: path.join(process.env.VITE_PUBLIC, 'favicon.ico'),
       width: 1600,

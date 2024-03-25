@@ -7,17 +7,17 @@ import { FaCheck } from "react-icons/fa6";
 export default function Version() {
   const [isUpdateAvailable] = useState<boolean>(false);
   const [isUpdateDownloaded] = useState<boolean>(false);
-  const [version, setVersion] = useState<VersionInterface>({ version: '' });
+  const [version, setVersion] = useState<VersionInterface>({ version: '', isDev: true});
 
   useEffect(() => {
     IpcService.send('version').then((res) => {
-      setVersion(res as VersionInterface);
+      setVersion(res.data as VersionInterface);
     });
   }, []);
 
   return (
     <div className={`Version ${isUpdateAvailable ? '--available' : ''}`}>
-      <span className="Version__version">{version.version}</span>
+      <span className="Version__version">{version.isDev ? "Development" : version.version}</span>
       {
         isUpdateAvailable && !isUpdateDownloaded ?
           <div className="Version__action">

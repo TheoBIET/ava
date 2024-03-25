@@ -4,8 +4,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-end;
   gap: $gutter;
   overflow-y: auto;
+  cursor: move;
+  width: 25vw;
+  height: 40vh;
+
+  &:hover {
+    background: #F8F8FF10;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;

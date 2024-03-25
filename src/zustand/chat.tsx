@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { Message } from "ollama";
 import IpcService from "../services/ipcService";
-import { useOllamaStore } from "./ollama";
+import { useOllamaConfigStore } from "./ollamaConfig";
 import { IpcResponse } from "../../shared/interfaces/IpcResponse";
 
 type State = {
@@ -18,12 +18,10 @@ export const useChatStore = create<State>((set, get) => ({
   getChatCompletion: async (input: string) => {
     set((state) => ({ messages: [...state.messages, { content: input, role: 'user' }], isLoading: true }));
     const response = await IpcService.send('chat', {
-      apiUrl: useOllamaStore.getState().apiUrl,
-      model: useOllamaStore.getState().selectedModel,
+      apiUrl: useOllamaConfigStore.getState().apiUrl,
+      model: useOllamaConfigStore.getState().selectedModel,
       messages: get().messages,
     }) as IpcResponse;
-
-    console.log(response);
 
     if (response.error.status !== 'KO') {
       set((state) => ({ messages: [...state.messages, response.data.message], isLoading: false }));

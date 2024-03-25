@@ -1,52 +1,77 @@
 import { useEffect } from "react";
-import { useOllamaStore } from "../../zustand/ollama";
+import { useOllamaConfigStore } from "../../zustand/ollamaConfig";
+import { LocaleKeys } from '../../../shared/constants/locales';
 import IpcService from "../../services/ipcService";
 
 export default function General() {
-  const isApiRunning = useOllamaStore((state) => state.isApiRunning);
-  const apiVersion = useOllamaStore((state) => state.apiVersion);
-  const setApiUrl = useOllamaStore((state) => state.setApiUrl);
-  const apiUrl = useOllamaStore((state) => state.apiUrl);
-  const selectedModel = useOllamaStore((state) => state.selectedModel);
-  const models = useOllamaStore((state) => state.models);
+  const isApiRunning = useOllamaConfigStore((state) => state.isApiRunning);
+  const apiVersion = useOllamaConfigStore((state) => state.apiVersion);
+  const setApiUrl = useOllamaConfigStore((state) => state.setApiUrl);
+  const apiUrl = useOllamaConfigStore((state) => state.apiUrl);
+  const locales = useOllamaConfigStore((state) => state.locales);
+  const selectedLocale = useOllamaConfigStore((state) => state.selectedLocale);
+  const selectedModel = useOllamaConfigStore((state) => state.selectedModel);
+  const models = useOllamaConfigStore((state) => state.models);
 
   useEffect(() => {
     IpcService.send('ollama-version',  { apiUrl }).then((res) => {
       console.log(res)
       if (res.error.status !== 'KO') {
-        useOllamaStore.setState({ 
+        useOllamaConfigStore.setState({ 
           isApiRunning: true,
           apiVersion: res.data.version
         });
 
-        console.log(useOllamaStore.getState())
+        console.log(useOllamaConfigStore.getState())
       }
     });
   }, [apiUrl]);
 
+  const handleSelectLocale = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    useOllamaConfigStore.setState({ selectedLocale: e.target.value as LocaleKeys });
+  }
+
+  const handleSelectModel = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    useOllamaConfigStore.setState({ selectedModel: e.target.value });
+  }
+
+  const handleApiUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setApiUrl(e.target.value);
+  }
+
   return (
     <div className="General">
       <h3>General configuration</h3>
-      {
-        isApiRunning
-          ? <p>Ollama version: {apiVersion}</p>
-          : <p>Ollama version not found, are you sure that the server is running?</p>
-      }
+      <div className={`General__status ${isApiRunning ? '--success' : '--error'}`}>
+        {isApiRunning ? `Ollama API ${apiVersion} 🚀` : `Can't get the Ollama API version, are you sure the server is running at ${apiUrl}?`}
+      </div>
       <br></br> {/* 💩 */}
       <div className="InputSelect">
-        <label>Availables Ollama LLM :</label>
-        <select value={selectedModel} onChange={(e) => useOllamaStore.setState({ selectedModel: e.target.value })}>
-          {models.map((model, index) => (
-            <option key={index} value={model.name}>
-              {model.label}
+        <label>Selected Locale :</label>
+        <select value={selectedLocale} onChange={handleSelectLocale}>
+          {locales.map((locale, index) => (
+            <option key={index} value={locale.key}>
+              {locale.label}
             </option>
           ))}
         </select>
       </div>
       <div className="Input">
         <label>Ollama API URL :</label>
-        <input type="text" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} />
+        <input type="text" value={apiUrl} onChange={handleApiUrlChange} />
       </div>
+      {isApiRunning && (
+        <div className="InputSelect">
+          <label>LLM Model to query from oLLama API :</label>
+          <select value={selectedModel} onChange={handleSelectModel}>
+            {models.map((model, index) => (
+              <option key={index} value={model.name}>
+                {model.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
     </div>
   )
 }

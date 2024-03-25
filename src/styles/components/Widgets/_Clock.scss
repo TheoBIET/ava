@@ -1,0 +1,11 @@
+.Clock {
+  display: flex;
+  gap: $gutter-d2;
+
+  p {
+    font-size: $t-1;
+    background: $primary;
+    padding: $gutter-d2;
+    border-radius: 5px;
+  }
+}

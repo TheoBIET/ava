@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import { OllamaRequestError } from "../../shared/errors/OllamaRequest";
 
 export interface Message {
   role: string
@@ -7,8 +8,8 @@ export interface Message {
 }
 
 export interface OllamaRequesterConfig {
-  apiUrl?: string 
-  model?: string 
+  apiUrl?: string
+  model?: string
   stream?: boolean
 }
 
@@ -24,27 +25,27 @@ export class OllamaRequester {
     });
   }
 
-  async test(): Promise<{ version: string }> {
+  set opts(opts: OllamaRequesterConfig) {
+    this.#opts = opts;
+  }
+
+  async test(): Promise<{ data: { version: string } }> {
     try {
-      const response = await this.#api.get('/api/version');
-      return response.data;
+      return await this.#api.get('/api/version');
     } catch (error) {
-      console.log(error)
-      throw new Error();
+      throw new OllamaRequestError();
     }
   }
 
-  async chat(messages: Message[]): Promise<{ message: Message }> {
+  async chat(messages: Message[]): Promise<{ data: { message: Message } }> {
     try {
-      const response = await this.#api.post('/api/chat', {
+      return await this.#api.post('/api/chat', {
         model: this.#opts.model || 'mistral',
         stream: !!this.#opts.stream,
         messages,
       });
-
-      return response.data;
     } catch (error) {
-      throw new Error();
+      throw new OllamaRequestError();
     }
   }
 }

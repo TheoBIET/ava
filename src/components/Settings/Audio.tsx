@@ -1,7 +1,7 @@
 import useSpeechRecognition from "../../hooks/useSpeechRecognition";
 
 export default function Audio() {
-  const NUM_BARS = 50;
+  const NUM_BARS = 100;
   const {
     isAudioAPILoaded,
     inputDevices,
@@ -18,6 +18,32 @@ export default function Audio() {
   return (
     <div className="Audio">
       <h3>Voice parameters</h3>
+      <div className="Audio__stt">
+        <h4>Speech-to-text</h4>
+        <div>
+          <input type="radio" name="tts" value="system_tts" />
+          <label htmlFor="system_tts">Whisper - (Local)</label>
+        </div>
+        <div>
+          <input type="radio" name="tts" value="elevenlabs" />
+          <label htmlFor="elevenlabs">Whisper - (API)</label>
+        </div>
+      </div>
+      <div className="Audio__tts">
+        <h4>Text-to-speech</h4>
+        <div>
+          <input type="radio" name="tts" value="system_tts" />
+          <label htmlFor="system_tts">System TTS - Local</label>
+        </div>
+        <div>
+          <input type="radio" name="tts" value="elevenlabs" />
+          <label htmlFor="elevenlabs">BarkAI - Local</label>
+        </div>
+        <div>
+          <input type="radio" name="tts" value="elevenlabs" />
+          <label htmlFor="elevenlabs">Eleven Labs - API</label>
+        </div>
+      </div>
       {isAudioAPILoaded && (
         <>
           <div className="Audio__devices">
@@ -47,6 +73,12 @@ export default function Audio() {
           </div>
           <div className="Audio__recording">
             <h4>Recording</h4>
+            <div className="Audio__settings__threshold">
+              <div className="InputSelect">
+                <label>Threshold</label>
+                <input type="range" min="0" max="100" />
+              </div>
+            </div>
             <div className="Audio__recording__level">
               {[...Array(NUM_BARS)].map((_, index) => (
                 <div

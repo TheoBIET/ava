@@ -2,9 +2,7 @@ import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import { useChatStore } from "../../zustand/chat";
 
-export default function Chat({ className }: Readonly<{
-  className: string;
-}>) {
+export default function ChatInput() {
   const getChatCompletion = useChatStore((state) => state.getChatCompletion);
   const isLoading = useChatStore((state) => state.isLoading);
   const [input, setInput] = useState("");
@@ -19,7 +17,7 @@ export default function Chat({ className }: Readonly<{
   }
 
   return (
-    <div className={`Chat ${className}`}>
+    <div className="Chat">
       {!isLoading && (
         <form className="InputChat" onSubmit={handleSend}>
           <input

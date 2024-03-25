@@ -1,6 +1,5 @@
 import './styles/index.css';
 
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom'
 
@@ -22,8 +21,8 @@ const router = createRouter([
 
 createRoot(document.getElementById('app')!)
   .render(
-    <StrictMode>
-      <Frame />
+    <>
+      <Frame theme="dark" />
       <RouterProvider router={router} />
-    </StrictMode>,
+    </>,
   )

@@ -2,10 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: $gutter-d2 $gutter-2;
+  padding: $gutter-d4 $gutter;
   background-color: darken($primary, 10%);
   -webkit-app-region: drag;
   font-weight: $t-reg;
+  min-height: 4.5vh;
 
   &__container {
     display: flex;
@@ -13,7 +14,7 @@
     align-items: center;
 
     &__title {
-      font-size: $t-5;
+      font-size: $t-6;
     }
   }
 

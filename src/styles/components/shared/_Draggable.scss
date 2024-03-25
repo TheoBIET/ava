@@ -1,0 +1,41 @@
+.Draggable {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-d2;
+
+  &__actions {
+    display: flex;
+    gap: $gutter-d2;
+
+    &__action {
+      background: $tertiary;
+      padding: $gutter-d4;
+      font-size: $t-5;
+      line-height: 0.2;
+      border-radius: 3px;
+
+      &.--move {
+        cursor: move;
+      }
+
+      &.--close {
+        background: $red;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__content {
+    border-radius: 3px;
+    padding: $gutter-d2;
+
+    &.--settings {
+      border: 1px solid $tertiary;
+    }
+  }
+
+  &.--debug {
+    border: 2px solid #F0F;
+  }
+}

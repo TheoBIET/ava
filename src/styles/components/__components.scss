@@ -1,14 +1,19 @@
 @import "Frame/Frame";
 @import "Frame/Version";
 
+@import "Home/ContextMenu";
 @import "Home/Home";
-@import "Home/Links";
 
 @import "Settings/Audio";
+@import "Settings/ConnectedApplications";
+@import "Settings/General";
 @import "Settings/Navigation";
 @import "Settings/Settings";
 
+@import "Shared/Draggable";
 @import "Shared/Input";
 @import "Shared/InputSelect";
 
+@import "Widgets/ChatInput";
+@import "Widgets/Clock";
 @import "Widgets/Conversation";

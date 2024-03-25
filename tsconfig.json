@@ -25,7 +25,8 @@
   "include": [
     "src",
     "app",
-    "shared/interfaces"
+    "shared/interfaces",
+    "src/components/Widgets/.tsx"
   ],
   "exclude": [
     "node_modules",

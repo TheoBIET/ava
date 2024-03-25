@@ -1,17 +1,17 @@
 .Version {
   background-color: $green;
-  padding: $gutter-d2;
+  padding: $gutter-d4;
   color: $white;
   font-size: $t-6;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: $gutter-d2;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-app-region: no-drag;
 
   &__version {
-    font-size: $t-5;
+    font-size: $t-6;
   }
 
   &__action {

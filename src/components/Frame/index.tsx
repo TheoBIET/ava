@@ -3,13 +3,15 @@ import IpcService from "../../services/ipcService";
 import { IoCloseOutline, IoRemove } from "react-icons/io5";
 import { IoIosSquareOutline } from "react-icons/io";
 
-export default function Frame() {
+export default function Frame({ theme }: Readonly<{
+  theme: 'default' | 'dark'
+}>) {
   const handleMinimize = () => IpcService.send('minimize');
   const handleMaximize = () => IpcService.send('maximize');
   const handleClose = () => IpcService.send('close');
 
   return (
-    <header className="Frame">
+    <header className={`Frame --${theme}`}>
       <div className="Frame__container">
         <h1 className="Frame__container__title">ava - your local personal assistant</h1>
         <Version />

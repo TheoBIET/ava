@@ -1,29 +1,17 @@
 .Home {
   width: 100%;
-  height: 100%;
+  flex: 2;
+  max-height: 100vh;
   background: url("/images/scene.jpg") center center/cover;
 
-  &__chat {
+  &__author {
     position: absolute;
     bottom: $gutter-3;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40%;
-  }
-
-  &__conversation {
-    position: absolute;
-    top: $gutter-3;
     right: $gutter-3;
-    width: 20%;
-    height: 50%;
-  }
-
-  &__links {
-    position: absolute;
-    bottom: $gutter-3;
-    left: $gutter-3;
     transition: 0.3s;
+    font-size: $t-6;
+    font-weight: $t-bold;
+    color: $primary;
 
     &:hover {
       opacity: 0.9;
