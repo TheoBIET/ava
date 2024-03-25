@@ -1,0 +1,27 @@
+.ConnectedApplications {
+  &__list {
+    display: flex;
+    gap: $gutter;
+
+    &__item {
+      border: 2px solid $primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 5em;
+      width: 5em;
+      border-radius: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary;
+        color: $white;
+      }
+
+      &__icon {
+        height: 3em;
+        width: 3em;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.General {
+  width: 100%;
+
+  &__status {
+    padding: $gutter-d2;
+    background-color: $green;
+    border-radius: 5px;
+    font-size: $t-6;
+    width: fit-content;
+
+    &.--error {
+      background-color: $red;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.ContextMenu {
+  position: absolute;
+  display: none;
+  font-size: $t-6;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 100;
+  width: 200px;
+  border-radius: 10px;
+  gap: $gutter-d4;
+
+  &.--visible {
+    display: flex;
+  }
+
+  &__item {
+    gap: $gutter-3;
+    padding: $gutter $gutter-d4;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    background-color: $primary;
+    position: relative;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: darken($primary, 10%);
+
+      .ContextMenu {
+        position: absolute;
+        display: flex;
+        top: 0;
+        left: 100%;
+        padding: 0 $gutter-d4;
+      }
+    }
+
+    &__content {
+      display: flex;
+      gap: $gutter-d4;
+    }
+
+    &.--submenu {
+      &::after {
+        content: '>';
+        margin-right: $gutter-d4;
+      }
+    }
+  }
+}

@@ -1,0 +1,676 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+/* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  -webkit-touch-callout: none;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Améliorations */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a,
+del,
+ins {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+}
+
+label,
+button {
+  cursor: pointer;
+}
+
+input,
+button {
+  outline: 0;
+}
+
+body {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-family: "Ubuntu", arial;
+  background: #1b1b1b;
+  color: #f8f8ff;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  font-family: "Ubuntu", arial;
+  display: flex;
+  flex-direction: column;
+}
+#app .App {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+#app .App > div {
+  padding: 2.8125rem 5.625rem;
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.Frame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.234375rem 0.9375rem;
+  background-color: #3838a1;
+  -webkit-app-region: drag;
+  font-weight: 400;
+  min-height: 4.5vh;
+}
+.Frame__container {
+  display: flex;
+  gap: 1.875rem;
+  align-items: center;
+}
+.Frame__container__title {
+  font-size: 14px;
+}
+.Frame__actions {
+  display: flex;
+  gap: 0.9375rem;
+  -webkit-app-region: no-drag;
+  align-items: center;
+}
+.Frame__actions__action {
+  font-size: 24px;
+  border: none;
+  background-color: transparent;
+  color: #f8f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Version {
+  background-color: #4dce9c;
+  padding: 0.234375rem;
+  color: #f8f8ff;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.46875rem;
+  border-radius: 5px;
+  -webkit-app-region: no-drag;
+}
+.Version__version {
+  font-size: 14px;
+}
+.Version__action {
+  font-size: 14px;
+  border: 1px solid #f8f8ff;
+  border-radius: 50%;
+  padding: 0.234375rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Version.--available {
+  background-color: #ED9158;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.Version.--available:hover {
+  background-color: #e8732a;
+}
+
+.ContextMenu {
+  position: absolute;
+  display: none;
+  font-size: 14px;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 100;
+  width: 200px;
+  border-radius: 10px;
+  gap: 0.234375rem;
+}
+.ContextMenu.--visible {
+  display: flex;
+}
+.ContextMenu__item {
+  gap: 2.8125rem;
+  padding: 0.9375rem 0.234375rem;
+  transition: 0.3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  background-color: #4c4cc0;
+  position: relative;
+  border-radius: 10px;
+}
+.ContextMenu__item:hover {
+  background-color: #3838a1;
+}
+.ContextMenu__item:hover .ContextMenu {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 100%;
+  padding: 0 0.234375rem;
+}
+.ContextMenu__item__content {
+  display: flex;
+  gap: 0.234375rem;
+}
+.ContextMenu__item.--submenu::after {
+  content: ">";
+  margin-right: 0.234375rem;
+}
+
+.Home {
+  width: 100%;
+  flex: 2;
+  max-height: 100vh;
+  background: url("/images/scene.jpg") center center/cover;
+}
+.Home__author {
+  position: absolute;
+  bottom: 2.8125rem;
+  right: 2.8125rem;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4c4cc0;
+}
+.Home__author:hover {
+  opacity: 0.9;
+}
+
+.InputChat {
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px 10px 14px;
+  background: linear-gradient(101deg, rgba(48, 129, 161, 0.5647058824) -15%, rgba(95, 95, 255, 0.5647058824) 100%);
+  border-radius: 10px;
+}
+.InputChat input[type=text] {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: #f8f8ff;
+  font-size: 1.5rem;
+}
+.InputChat input[type=text]::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4392156863);
+  font-family: "Ubuntu";
+}
+.InputChat input[type=text]::placeholder {
+  color: rgba(255, 255, 255, 0.4392156863);
+  font-family: "Ubuntu";
+}
+.InputChat button {
+  background: #3838a1;
+  border: none;
+  border-radius: 6px;
+  padding: 0.234375rem 0.46875rem;
+  color: #f8f8ff;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  transition: 0.3s;
+}
+.InputChat button:hover {
+  opacity: 0.9;
+}
+
+.Audio {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  width: 100%;
+  height: 100%;
+}
+.Audio h4 {
+  margin-bottom: 0.9375rem;
+}
+.Audio__devices__wrapper {
+  display: flex;
+  gap: 1.875rem;
+}
+.Audio__recording__level {
+  display: flex;
+  gap: 0.234375rem;
+}
+.Audio__recording__level__bar {
+  background-color: #f8f8ff;
+  height: 1rem;
+  width: 0.5rem;
+  border-radius: 3px;
+}
+.Audio__recording__level__bar.--active {
+  background-color: #4c4cc0;
+}
+
+.ConnectedApplications__list {
+  display: flex;
+  gap: 0.9375rem;
+}
+.ConnectedApplications__list__item {
+  border: 2px solid #4c4cc0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5em;
+  width: 5em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.ConnectedApplications__list__item:hover {
+  background-color: #4c4cc0;
+  color: #f8f8ff;
+}
+.ConnectedApplications__list__item__icon {
+  height: 3em;
+  width: 3em;
+}
+
+.General {
+  width: 100%;
+}
+.General__status {
+  padding: 0.46875rem;
+  background-color: #4dce9c;
+  border-radius: 5px;
+  font-size: 14px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.General__status.--error {
+  background-color: #ff5c5c;
+}
+
+.Navigation {
+  height: 100%;
+  width: 15%;
+  background: #020202;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.875rem;
+  padding: 0.9375rem;
+}
+.Navigation__links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  width: 100%;
+  flex: 2;
+}
+.Navigation__links__category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.234375rem;
+  width: 100%;
+}
+.Navigation__links__category__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8f8ff;
+  margin-bottom: 0.46875rem;
+}
+.Navigation__links__category__item {
+  display: flex;
+  align-items: center;
+  gap: 0.46875rem;
+  padding: 0.234375rem 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Navigation__links__category__item.--active {
+  background-color: #4c4cc0;
+}
+.Navigation__links__category__item__icon {
+  background-color: #4c4cc0;
+  border-radius: 50%;
+  line-height: 0.9;
+  padding: 0.46875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.Navigation__links__category__item__icon.--quit {
+  color: red;
+}
+.Navigation__links__category__item__title {
+  font-size: 14px;
+}
+.Navigation__links__category__item:hover {
+  background-color: #4c4cc0;
+}
+
+.Settings {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.Settings__content {
+  padding: 2.8125rem 4.6875rem;
+  flex: 2;
+}
+.Settings__content h3 {
+  margin-bottom: 1.875rem;
+}
+
+.Draggable {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.46875rem;
+}
+.Draggable__actions {
+  display: flex;
+  gap: 0.46875rem;
+}
+.Draggable__actions__action {
+  background: #58c2ec;
+  padding: 0.234375rem;
+  font-size: 18px;
+  line-height: 0.2;
+  border-radius: 3px;
+}
+.Draggable__actions__action.--move {
+  cursor: move;
+}
+.Draggable__actions__action.--close {
+  background: #ff5c5c;
+  cursor: pointer;
+}
+.Draggable__content {
+  border-radius: 3px;
+  padding: 0.46875rem;
+}
+.Draggable__content.--settings {
+  border: 1px solid #58c2ec;
+}
+.Draggable.--debug {
+  border: 2px solid #F0F;
+}
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.9375rem;
+  width: 100%;
+}
+.Input label {
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 0.234375rem;
+}
+.Input input[type=text] {
+  color: #f8f8ff;
+  background: #020202;
+  padding: 0.9375rem 0.46875rem;
+  border-radius: 3px;
+  font-size: 14px;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+}
+
+.InputSelect {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.9375rem;
+  width: 100%;
+}
+.InputSelect label {
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 0.234375rem;
+}
+.InputSelect select {
+  color: #f8f8ff;
+  background: #020202;
+  padding: 0.9375rem 0.46875rem;
+  border-radius: 3px;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  border: none;
+}
+
+.Chat {
+  position: absolute;
+  bottom: 2.8125rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+}
+
+.Clock {
+  display: flex;
+  gap: 0.46875rem;
+}
+.Clock p {
+  font-size: 64px;
+  background: #4c4cc0;
+  padding: 0.46875rem;
+  border-radius: 5px;
+}
+
+.Conversation {
+  border-radius: 10px;
+  padding: 0.46875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.9375rem;
+  overflow-y: auto;
+  cursor: move;
+  width: 25vw;
+  height: 40vh;
+}
+.Conversation:hover {
+  background: rgba(248, 248, 255, 0.062745098);
+}
+.Conversation::-webkit-scrollbar {
+  width: 5px;
+  background: #4c4cc0;
+  border-radius: 5px;
+}
+.Conversation::-webkit-scrollbar-thumb {
+  background: #58c2ec;
+  border-radius: 5px;
+}
+.Conversation__message {
+  background: #4c4cc0;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 70%;
+  padding: 0.46875rem;
+  border-radius: 5px;
+}
+.Conversation__message.--user {
+  background: #58c2ec;
+  align-self: flex-end;
+}
+.Conversation__message p {
+  font-size: 14px;
+}/*# sourceMappingURL=index.css.map */

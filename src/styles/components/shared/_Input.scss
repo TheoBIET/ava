@@ -1,0 +1,23 @@
+.Input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $gutter;
+  width: 100%;
+
+  label {
+    font-size: $t-6;
+    text-transform: uppercase;
+    margin-bottom: $gutter-d4;
+  }
+
+  input[type="text"] {
+    color: $white;
+    background: darken($secondary, 10%);
+    padding: $gutter $gutter-d2;
+    border-radius: 3px;
+    font-size: $t-6;
+    width: 100%;
+    appearance: none;
+    border: none;
+  }
+}
